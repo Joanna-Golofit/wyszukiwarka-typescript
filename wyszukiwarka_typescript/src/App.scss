@@ -1,0 +1,20 @@
+.FAQ {
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 70%;
+
+	.main-container {
+		display: flex;
+		justify-content: space-between;
+
+		.left,
+		.right {
+			width: 45%;
+		}
+	}
+
+	h2 {
+		cursor: pointer;
+	}
+}
