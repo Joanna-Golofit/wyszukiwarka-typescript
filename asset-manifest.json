@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "//joanna-golofit.github.io/wyszukiwarka-typescript/static/css/main.e7b0cfbf.css",
+    "main.js": "//joanna-golofit.github.io/wyszukiwarka-typescript/static/js/main.f2162677.js",
+    "static/js/787.ff076f58.chunk.js": "//joanna-golofit.github.io/wyszukiwarka-typescript/static/js/787.ff076f58.chunk.js",
+    "index.html": "//joanna-golofit.github.io/wyszukiwarka-typescript/index.html",
+    "main.e7b0cfbf.css.map": "//joanna-golofit.github.io/wyszukiwarka-typescript/static/css/main.e7b0cfbf.css.map",
+    "main.f2162677.js.map": "//joanna-golofit.github.io/wyszukiwarka-typescript/static/js/main.f2162677.js.map",
+    "787.ff076f58.chunk.js.map": "//joanna-golofit.github.io/wyszukiwarka-typescript/static/js/787.ff076f58.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e7b0cfbf.css",
+    "static/js/main.f2162677.js"
+  ]
+}
