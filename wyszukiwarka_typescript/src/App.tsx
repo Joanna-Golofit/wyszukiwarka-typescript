@@ -28,27 +28,33 @@ const App: React.FC = () => {
 					{data.groups.left.map((group, index) => (
 						<div key={index}>
 							<h2>{group.name}</h2>
-							{filteredData
-								.filter(faq => faq.groupId === group.id)
-								.map((faq, index) => (
-									<div key={index}>
-										<h3
-											onClick={() =>
-												setShowContent(showContent === faq.id ? null : faq.id)
-											}
-										>
-											{faq.title}{" "}
-											{showContent === faq.id ? (
-												<FontAwesomeIcon icon={faChevronUp} />
-											) : (
-												<FontAwesomeIcon icon={faChevronDown} />
-											)}
-										</h3>
-										{showContent === faq.id && (
-											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
-										)}
-									</div>
-								))}
+							{filteredData && filteredData.length > 0
+								? filteredData
+										.filter(faq => faq.groupId === group.id)
+										.map((faq, index) => (
+											<div key={index}>
+												<h3
+													onClick={() =>
+														setShowContent(
+															showContent === faq.id ? null : faq.id
+														)
+													}
+												>
+													{faq.title}{" "}
+													{showContent === faq.id ? (
+														<FontAwesomeIcon icon={faChevronUp} />
+													) : (
+														<FontAwesomeIcon icon={faChevronDown} />
+													)}
+												</h3>
+												{showContent === faq.id && (
+													<p
+														dangerouslySetInnerHTML={{ __html: faq.content }}
+													/>
+												)}
+											</div>
+										))
+								: "no results"}
 						</div>
 					))}
 				</section>
@@ -56,27 +62,33 @@ const App: React.FC = () => {
 					{data.groups.right.map((group, index) => (
 						<div key={index}>
 							<h2>{group.name}</h2>
-							{filteredData
-								.filter(faq => faq.groupId === group.id)
-								.map((faq, index) => (
-									<div key={index}>
-										<h3
-											onClick={() =>
-												setShowContent(showContent === faq.id ? null : faq.id)
-											}
-										>
-											{faq.title}{" "}
-											{showContent === faq.id ? (
-												<FontAwesomeIcon icon={faChevronUp} />
-											) : (
-												<FontAwesomeIcon icon={faChevronDown} />
-											)}
-										</h3>
-										{showContent === faq.id && (
-											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
-										)}
-									</div>
-								))}
+							{filteredData && filteredData.length > 0
+								? filteredData
+										.filter(faq => faq.groupId === group.id)
+										.map((faq, index) => (
+											<div key={index}>
+												<h3
+													onClick={() =>
+														setShowContent(
+															showContent === faq.id ? null : faq.id
+														)
+													}
+												>
+													{faq.title}{" "}
+													{showContent === faq.id ? (
+														<FontAwesomeIcon icon={faChevronUp} />
+													) : (
+														<FontAwesomeIcon icon={faChevronDown} />
+													)}
+												</h3>
+												{showContent === faq.id && (
+													<p
+														dangerouslySetInnerHTML={{ __html: faq.content }}
+													/>
+												)}
+											</div>
+										))
+								: "no results"}
 						</div>
 					))}
 				</section>
