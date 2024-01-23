@@ -26,11 +26,6 @@ const App: React.FC = () => {
 		return new RegExp(searchPhrase).test(faqContent);
 	});
 
-	console.log("data (all):", data);
-	console.log("filteredData: ", filteredData);
-	console.log("search: ", search);
-	console.log("searchPhrase:", searchPhrase);
-
 	return (
 		<main className="FAQ">
 			<input
