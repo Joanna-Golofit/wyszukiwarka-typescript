@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.scss";
 import data from "./data/02-faq.json";
-import { FAQ } from "./types/types";
+import { FAQ, GroupType } from "./types/types";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,26 +16,30 @@ const App: React.FC = () => {
 		return new RegExp(searchPhrase).test(faqContent);
 	});
 
-	console.log(data);
-	console.log(filteredData);
-	console.log("searchPhrase", searchPhrase);
+	console.log("data (all):", data);
+	console.log("filteredData: ", filteredData);
+	console.log("search: ", search);
+	console.log("searchPhrase:", searchPhrase);
 
 	return (
 		<main className="FAQ">
 			<input
 				type="text"
 				value={search}
-				onChange={e => setSearch(e.target.value)}
+				// onChange={e => setSearch(e.target.value)}
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+					setSearch(e.target.value)
+				}
 				placeholder="Search..."
 			/>
 			<div className="main-container">
 				<section className="left">
-					{data.groups.left.map((group, index) => (
+					{data.groups.left.map((group: GroupType, index: number) => (
 						<div key={index}>
 							<h2>{group.name}</h2>
 							{filteredData
-								.filter(faq => faq.groupId === group.id)
-								.map((faq, index) => (
+								.filter((faq: FAQ) => faq.groupId === group.id)
+								.map((faq: FAQ, index: number) => (
 									<div key={index}>
 										<h3
 											onClick={() =>
@@ -58,12 +62,12 @@ const App: React.FC = () => {
 					))}
 				</section>
 				<section className="right">
-					{data.groups.right.map((group, index) => (
+					{data.groups.right.map((group: GroupType, index: number) => (
 						<div key={index}>
 							<h2>{group.name}</h2>
 							{filteredData
-								.filter(faq => faq.groupId === group.id)
-								.map((faq, index) => (
+								.filter((faq: FAQ) => faq.groupId === group.id)
+								.map((faq: FAQ, index: number) => (
 									<div key={index}>
 										<h3
 											onClick={() =>
@@ -86,12 +90,6 @@ const App: React.FC = () => {
 					))}
 				</section>
 			</div>
-			{/* {filteredData.map((faq: FAQ, index: number) => (
-				<div key={index}>
-					<h2 onClick={() => setShowContent(faq.id)}>{faq.title}</h2>
-					{showContent === index && <p>{faq.content} </p>}
-				</div>
-			))} */}
 		</main>
 	);
 };

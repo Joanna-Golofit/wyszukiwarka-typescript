@@ -4,3 +4,9 @@ export type FAQ = {
   title: string;
   content: string;
 };
+
+export type GroupType = {
+  name: string;
+  id: number;
+  columnType: string;
+};
