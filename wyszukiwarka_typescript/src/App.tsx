@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.scss";
 import data from "./data/02-faq.json";
 import { FAQ } from "./types/types";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const App: React.FC = () => {
 	const [search, setSearch] = useState<string>("");
@@ -35,7 +37,12 @@ const App: React.FC = () => {
 												setShowContent(showContent === faq.id ? null : faq.id)
 											}
 										>
-											{faq.title}
+											{faq.title}{" "}
+											{showContent === faq.id ? (
+												<FontAwesomeIcon icon={faChevronUp} />
+											) : (
+												<FontAwesomeIcon icon={faChevronDown} />
+											)}
 										</h3>
 										{showContent === faq.id && (
 											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
@@ -58,7 +65,12 @@ const App: React.FC = () => {
 												setShowContent(showContent === faq.id ? null : faq.id)
 											}
 										>
-											{faq.title}
+											{faq.title}{" "}
+											{showContent === faq.id ? (
+												<FontAwesomeIcon icon={faChevronUp} />
+											) : (
+												<FontAwesomeIcon icon={faChevronDown} />
+											)}
 										</h3>
 										{showContent === faq.id && (
 											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
