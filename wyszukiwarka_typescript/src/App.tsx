@@ -30,7 +30,13 @@ const App: React.FC = () => {
 								.filter(faq => faq.groupId === group.id)
 								.map((faq, index) => (
 									<div key={index}>
-										<h3 onClick={() => setShowContent(faq.id)}>{faq.title}</h3>
+										<h3
+											onClick={() =>
+												setShowContent(showContent === faq.id ? null : faq.id)
+											}
+										>
+											{faq.title}
+										</h3>
 										{showContent === faq.id && (
 											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
 										)}
@@ -47,7 +53,13 @@ const App: React.FC = () => {
 								.filter(faq => faq.groupId === group.id)
 								.map((faq, index) => (
 									<div key={index}>
-										<h3 onClick={() => setShowContent(faq.id)}>{faq.title}</h3>
+										<h3
+											onClick={() =>
+												setShowContent(showContent === faq.id ? null : faq.id)
+											}
+										>
+											{faq.title}
+										</h3>
 										{showContent === faq.id && (
 											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
 										)}
