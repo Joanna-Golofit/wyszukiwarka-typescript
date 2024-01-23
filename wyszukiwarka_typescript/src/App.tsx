@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
 import data from "./data/02-faq.json";
 import { FAQ, GroupType } from "./types/types";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 const App: React.FC = () => {
+	const navigate = useNavigate();
 	const [search, setSearch] = useState<string>("");
 	const [showContent, setShowContent] = useState<number | null>(null);
+
+	useEffect(() => {
+		const hash = window.location.hash.replace("#", "");
+		if (hash) {
+			const id = parseInt(hash, 10);
+			setShowContent(isNaN(id) ? null : id);
+		}
+	}, []);
 
 	const searchPhrase = search.toLowerCase().split(" ").join(".*");
 
@@ -26,7 +36,6 @@ const App: React.FC = () => {
 			<input
 				type="text"
 				value={search}
-				// onChange={e => setSearch(e.target.value)}
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 					setSearch(e.target.value)
 				}
@@ -39,12 +48,15 @@ const App: React.FC = () => {
 							<h2>{group.name}</h2>
 							{filteredData
 								.filter((faq: FAQ) => faq.groupId === group.id)
-								.map((faq: FAQ, index: number) => (
-									<div key={index}>
+								.map((faq: FAQ) => (
+									<div key={faq.id}>
 										<h3
-											onClick={() =>
-												setShowContent(showContent === faq.id ? null : faq.id)
-											}
+											onClick={() => {
+												const newShowContent =
+													showContent === faq.id ? null : faq.id;
+												setShowContent(newShowContent);
+												navigate(`#${newShowContent}`);
+											}}
 										>
 											{faq.title}{" "}
 											{showContent === faq.id ? (
@@ -67,12 +79,15 @@ const App: React.FC = () => {
 							<h2>{group.name}</h2>
 							{filteredData
 								.filter((faq: FAQ) => faq.groupId === group.id)
-								.map((faq: FAQ, index: number) => (
-									<div key={index}>
+								.map((faq: FAQ) => (
+									<div key={faq.id}>
 										<h3
-											onClick={() =>
-												setShowContent(showContent === faq.id ? null : faq.id)
-											}
+											onClick={() => {
+												const newShowContent =
+													showContent === faq.id ? null : faq.id;
+												setShowContent(newShowContent);
+												navigate(`#${newShowContent}`);
+											}}
 										>
 											{faq.title}{" "}
 											{showContent === faq.id ? (
