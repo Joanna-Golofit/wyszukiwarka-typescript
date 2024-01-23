@@ -9,11 +9,16 @@ const App: React.FC = () => {
 	const [search, setSearch] = useState<string>("");
 	const [showContent, setShowContent] = useState<number | null>(null);
 
-	const filteredData: FAQ[] = data.questions.filter((faq: FAQ) =>
-		(faq.title + faq.content).toLowerCase().includes(search.toLowerCase())
-	);
+	const searchPhrase = search.toLowerCase().split(" ").join(".*");
+
+	const filteredData: FAQ[] = data.questions.filter((faq: FAQ) => {
+		const faqContent = (faq.title + faq.content).toLowerCase();
+		return new RegExp(searchPhrase).test(faqContent);
+	});
+
 	console.log(data);
 	console.log(filteredData);
+	console.log("searchPhrase", searchPhrase);
 
 	return (
 		<main className="FAQ">
@@ -28,33 +33,27 @@ const App: React.FC = () => {
 					{data.groups.left.map((group, index) => (
 						<div key={index}>
 							<h2>{group.name}</h2>
-							{filteredData && filteredData.length > 0
-								? filteredData
-										.filter(faq => faq.groupId === group.id)
-										.map((faq, index) => (
-											<div key={index}>
-												<h3
-													onClick={() =>
-														setShowContent(
-															showContent === faq.id ? null : faq.id
-														)
-													}
-												>
-													{faq.title}{" "}
-													{showContent === faq.id ? (
-														<FontAwesomeIcon icon={faChevronUp} />
-													) : (
-														<FontAwesomeIcon icon={faChevronDown} />
-													)}
-												</h3>
-												{showContent === faq.id && (
-													<p
-														dangerouslySetInnerHTML={{ __html: faq.content }}
-													/>
-												)}
-											</div>
-										))
-								: "no results"}
+							{filteredData
+								.filter(faq => faq.groupId === group.id)
+								.map((faq, index) => (
+									<div key={index}>
+										<h3
+											onClick={() =>
+												setShowContent(showContent === faq.id ? null : faq.id)
+											}
+										>
+											{faq.title}{" "}
+											{showContent === faq.id ? (
+												<FontAwesomeIcon icon={faChevronUp} />
+											) : (
+												<FontAwesomeIcon icon={faChevronDown} />
+											)}
+										</h3>
+										{showContent === faq.id && (
+											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
+										)}
+									</div>
+								))}
 						</div>
 					))}
 				</section>
@@ -62,33 +61,27 @@ const App: React.FC = () => {
 					{data.groups.right.map((group, index) => (
 						<div key={index}>
 							<h2>{group.name}</h2>
-							{filteredData && filteredData.length > 0
-								? filteredData
-										.filter(faq => faq.groupId === group.id)
-										.map((faq, index) => (
-											<div key={index}>
-												<h3
-													onClick={() =>
-														setShowContent(
-															showContent === faq.id ? null : faq.id
-														)
-													}
-												>
-													{faq.title}{" "}
-													{showContent === faq.id ? (
-														<FontAwesomeIcon icon={faChevronUp} />
-													) : (
-														<FontAwesomeIcon icon={faChevronDown} />
-													)}
-												</h3>
-												{showContent === faq.id && (
-													<p
-														dangerouslySetInnerHTML={{ __html: faq.content }}
-													/>
-												)}
-											</div>
-										))
-								: "no results"}
+							{filteredData
+								.filter(faq => faq.groupId === group.id)
+								.map((faq, index) => (
+									<div key={index}>
+										<h3
+											onClick={() =>
+												setShowContent(showContent === faq.id ? null : faq.id)
+											}
+										>
+											{faq.title}{" "}
+											{showContent === faq.id ? (
+												<FontAwesomeIcon icon={faChevronUp} />
+											) : (
+												<FontAwesomeIcon icon={faChevronDown} />
+											)}
+										</h3>
+										{showContent === faq.id && (
+											<p dangerouslySetInnerHTML={{ __html: faq.content }} />
+										)}
+									</div>
+								))}
 						</div>
 					))}
 				</section>
